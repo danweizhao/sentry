@@ -25,6 +25,11 @@ class HealthRequestWithParams extends React.Component {
     tag: PropTypes.string.isRequired,
 
     /**
+     * Callback function to process category
+     */
+    getCategory: PropTypes.func,
+
+    /**
      * List of project ids to query
      */
     projects: PropTypes.arrayOf(PropTypes.string),
