@@ -190,6 +190,8 @@ SnubaLookup(
 )
 SnubaLookup('release', 'tags[sentry:release]', serializer=serialize_releases)
 SnubaLookup('os.name', 'tags[os.name]')
+SnubaLookup('device', 'tags[device]')
+SnubaLookup('device.family', 'tags[device_family]')
 SnubaLookup('browser.name', 'tags[browser.name]', conditions=[])
 SnubaLookup('error.type', 'error_type', selected_columns=[
     ('ifNull', ('arrayElement', ('exception_stacks.type', 1), "''"), 'error_type'),
