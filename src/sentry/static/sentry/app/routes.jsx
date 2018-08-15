@@ -749,6 +749,7 @@ function routes() {
                 import(/*webpackChunkName: HealthOverview*/ './views/organizationHealth/overview')}
               component={errorHandler(LazyLoad)}
             />
+
             <Route
               path="errors"
               componentPromise={() =>
