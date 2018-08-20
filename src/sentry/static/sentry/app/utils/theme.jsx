@@ -222,30 +222,6 @@ theme.button = {
   },
 };
 
-// palette generated via: https://gka.github.io/palettes/#colors=444674,69519A,E1567C,FB7D46,F2B712|steps=20|bez=1|coL=1
-const CHART_PALETTE = [
-  '#444674',
-  '#51497d',
-  '#5e4c83',
-  '#6f4e87',
-  '#7e5089',
-  '#8f5289',
-  '#9e5389',
-  '#af5587',
-  '#bf5584',
-  '#ce5681',
-  '#df567d',
-  '#e65e72',
-  '#ec6967',
-  '#f0735d',
-  '#f37f53',
-  '#f58a49',
-  '#f5953f',
-  '#f5a133',
-  '#f4ab26',
-  '#f2b712',
-];
-
 theme.charts = {
   colors: CHART_PALETTE[CHART_PALETTE.length - 1],
 
