@@ -150,6 +150,7 @@ def raw_query(start, end, groupby=None, conditions=None, filter_keys=None,
         'limit': limit,
         'orderby': orderby,
         'selected_columns': selected_columns,
+        'totals': totals,
     }) if v is not None}
 
     headers = {}
