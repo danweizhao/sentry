@@ -1,15 +1,18 @@
 import {Box, Flex} from 'grid-emotion';
+import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'react-emotion';
 
 import {TableChart} from 'app/components/charts/tableChart';
 import {t} from 'app/locale';
+import {addErrorMessage} from 'app/actionCreators/indicator';
 import AreaChart from 'app/components/charts/areaChart';
 import Count from 'app/components/count';
 import PercentageBarChart from 'app/components/charts/percentageBarChart';
 import IdBadge from 'app/components/idBadge';
 import PanelChart from 'app/components/charts/panelChart';
 import PieChart from 'app/components/charts/pieChart';
+import SentryTypes from 'app/sentryTypes';
 import overflowEllipsis from 'app/styles/overflowEllipsis';
 import space from 'app/styles/space';
 import withApi from 'app/utils/withApi';
@@ -18,10 +21,79 @@ import withLatestContext from 'app/utils/withLatestContext';
 import HealthContext from './util/healthContext';
 import HealthRequest from './util/healthRequest';
 
-const StyledOrganizationHealthErrors = styled(
-  class OrganizationHealthErrors extends React.Component {
+const ReleasesRequest = withApi(
+  class ReleasesRequestComponent extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        data: null,
+      };
+    }
+
+    async componentDidMount() {
+      // fetch releases
+      let {api, organization, limit} = this.props;
+      if (!organization) return;
+
+      try {
+        const releases = await api.requestPromise(
+          `/organizations/${organization.slug}/releases/`,
+          {
+            query: {
+              per_page: limit,
+            },
+          }
+        );
+
+        // eslint-disable-next-line
+        this.setState({
+          data: releases,
+        });
+      } catch (err) {
+        addErrorMessage(t('Unable to fetch releases'));
+      }
+    }
+
     render() {
-      let {className} = this.props;
+      let {children} = this.props;
+      let {data} = this.state;
+      let loading = data === null;
+
+      if (!data) {
+        return children({
+          loading,
+          data,
+        });
+      }
+
+      return (
+        <HealthRequest
+          tag="release"
+          timeseries={true}
+          interval="1d"
+          getCategory={({shortVersion}) => shortVersion}
+          filters={data.map(({version}) => `release:${version}`)}
+        >
+          {children}
+        </HealthRequest>
+      );
+    }
+  }
+);
+
+const OrganizationHealthErrors = styled(
+  class OrganizationHealthErrorsComponent extends React.Component {
+    static propTypes = {
+      actions: PropTypes.object,
+      organization: SentryTypes.Organization,
+    };
+
+    handleSetFilter = (tag, value) => {
+      this.props.actions.setFilter(tag, value);
+    };
+
+    render() {
+      let {organization, className} = this.props;
       return (
         <div className={className}>
           <Flex justify="space-between">
@@ -38,7 +110,7 @@ const StyledOrganizationHealthErrors = styled(
               tag="error.handled"
               timeseries={true}
               interval="1d"
-              getCategory={handled => (handled ? 'Handled' : 'Crash')}
+              getCategory={value => (value ? 'Handled' : 'Crash')}
             >
               {({data, loading}) => {
                 if (!data) return null;
@@ -50,45 +122,8 @@ const StyledOrganizationHealthErrors = styled(
               }}
             </HealthRequest>
 
-            <HealthRequest
-              tag="release"
-              timeseries={true}
-              interval="1d"
-              getCategory={({shortVersion}) => shortVersion}
-            >
-              {({data, loading}) => {
-                if (!data) return null;
-                return (
-                  <StyledPanelChart height={200} title={t('Releases')} series={data}>
-                    {props => <PercentageBarChart {...props} />}
-                  </StyledPanelChart>
-                );
-              }}
-            </HealthRequest>
-          </Flex>
-
-          <Flex>
-            <HealthRequest tag="error.type" timeseries={false} interval="1d">
-              {({data, loading}) => {
-                if (!data) return null;
-                return (
-                  <StyledTableChart
-                    title="Error Type"
-                    headers={['Error type']}
-                    data={data}
-                    widths={[null, 60, 60, 60, 60]}
-                    showColumnTotal
-                    shadeRowPercentage
-                  />
-                );
-              }}
-            </HealthRequest>
-            <HealthRequest
-              tag="user"
-              timeseries={false}
-              getCategory={({user}) => user.label}
-            >
-              {({originalData, loading}) => (
+            <HealthRequest tag="user" timeseries={false}>
+              {({originalData, loading, tag}) => (
                 <React.Fragment>
                   {!loading && (
                     <StyledTableChart
@@ -101,10 +136,17 @@ const StyledOrganizationHealthErrors = styled(
                         return typeof value === 'string' ? (
                           value
                         ) : (
-                          <IdBadge
-                            user={value.user}
-                            displayName={value.user && value.user.label}
-                          />
+                          <div
+                            onClick={() =>
+                              this.handleSetFilter(tag, value[tag]._health_id)}
+                          >
+                            <IdBadge
+                              user={value[tag].value}
+                              displayName={
+                                value[tag] && value[tag].value && value[tag].value.label
+                              }
+                            />
+                          </div>
                         );
                       }}
                       renderDataCell={({getValue, value, columnIndex}) => {
@@ -121,13 +163,54 @@ const StyledOrganizationHealthErrors = styled(
           </Flex>
 
           <Flex>
+            <ReleasesRequest limit={10} organization={organization}>
+              {({data, loading}) => {
+                if (!data) return null;
+                return (
+                  <StyledPanelChart height={200} title={t('Releases')} series={data}>
+                    {props => <PercentageBarChart {...props} />}
+                  </StyledPanelChart>
+                );
+              }}
+            </ReleasesRequest>
+
+            <ReleasesRequest limit={10} organization={organization}>
+              {({data, loading}) => {
+                if (!data) return null;
+                return (
+                  <StyledPanelChart height={200} title={t('Releases')} series={data}>
+                    {props => <AreaChart {...props} />}
+                  </StyledPanelChart>
+                );
+              }}
+            </ReleasesRequest>
+          </Flex>
+          <Flex>
+            <HealthRequest tag="error.type" timeseries={false} interval="1d">
+              {({data, loading}) => {
+                if (!data) return null;
+                return (
+                  <StyledTableChart
+                    title="Error Type"
+                    headers={['Error type']}
+                    data={data}
+                    widths={[null, 60, 60, 60, 60]}
+                    showColumnTotal
+                    shadeRowPercentage
+                  />
+                );
+              }}
+            </HealthRequest>
+          </Flex>
+
+          <Flex>
             <HealthRequest
               tag="release"
               timeseries={false}
               topk={5}
               getCategory={({shortVersion}) => shortVersion}
             >
-              {({originalData: data, loading}) => {
+              {({originalData: data, loading, tag}) => {
                 return (
                   <React.Fragment>
                     {!loading && (
@@ -141,7 +224,12 @@ const StyledOrganizationHealthErrors = styled(
                           renderHeaderCell={({getValue, value, columnIndex}) => {
                             return (
                               <Flex justify="space-between">
-                                <ReleaseName>{value.release.shortVersion}</ReleaseName>
+                                <ReleaseName
+                                  onClick={() =>
+                                    this.handleSetFilter(tag, value[tag]._health_id)}
+                                >
+                                  {value[tag].value.shortVersion}
+                                </ReleaseName>
                                 <Project>
                                   {value.topProjects.map(p => (
                                     <IdBadge key={p.slug} project={p} />
@@ -165,7 +253,7 @@ const StyledOrganizationHealthErrors = styled(
                             {
                               seriesName: t('Errors By Release'),
                               data: data.map(row => ({
-                                name: row.release.shortVersion,
+                                name: row.release.value.shortVersion,
                                 value: row.count,
                               })),
                             },
@@ -208,11 +296,12 @@ class OrganizationHealthErrorsContainer extends React.Component {
 
     return (
       <HealthContext.Consumer>
-        {({projects, environments, period}) => (
-          <StyledOrganizationHealthErrors
+        {({projects, environments, period, actions}) => (
+          <OrganizationHealthErrors
             projects={projects}
             environments={environments}
             period={period}
+            actions={actions}
             {...props}
           />
         )}
@@ -222,6 +311,7 @@ class OrganizationHealthErrorsContainer extends React.Component {
 }
 
 export default withApi(withLatestContext(OrganizationHealthErrorsContainer));
+export {OrganizationHealthErrors};
 
 const Header = styled(Flex)`
   font-size: 18px;

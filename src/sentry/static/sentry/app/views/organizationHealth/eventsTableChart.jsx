@@ -75,8 +75,8 @@ class EventsTableChart extends React.Component {
         ])}
         renderRow={({items}) => (
           <React.Fragment>
-            <NameAndEventsContainer justify="space-between" align="center">
-              {items[0]}
+            <NameAndEventsContainer flex={1} justify="space-between" align="center">
+              <div>{items[0]}</div>
               <div>{items[1]}</div>
             </NameAndEventsContainer>
             <PercentageContainer justify="space-between" align="center">

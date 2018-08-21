@@ -63,7 +63,7 @@ describe('HealthRequest', function() {
               seriesName: expect.anything(),
               data: [
                 expect.objectContaining({
-                  name: expect.anything(),
+                  name: expect.any(Number),
                   value: 123,
                 }),
               ],
