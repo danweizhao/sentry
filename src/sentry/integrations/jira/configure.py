@@ -91,6 +91,6 @@ class JiraConfigureView(View):
 
         # Ensure all enabled integrations.
         for org_id in enabled_orgs:
-            integration.add_organization(org_id)
+            integration.add_organization(org_id, request.user)
 
         return self.get_response({'form': form, 'completed': True})
