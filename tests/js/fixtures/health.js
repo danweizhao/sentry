@@ -1,10 +1,30 @@
-const COUNT_OBJ = tag => ({
-  count: 123,
-  release: {
-    _health_id: `${tag}:${tag}-slug`,
-    value: {slug: `${tag}-slug`},
-  },
-});
+const COUNT_OBJ = tag => {
+  let tagObject;
+
+  if (tag === 'user') {
+    const user = TestStubs.User();
+    tagObject = {
+      _health_id: `${tag}:${user.id}`,
+      value: user,
+    };
+  } else if (tag === 'release') {
+    const release = TestStubs.Release();
+    tagObject = {
+      _health_id: `${tag}:${release.slug}`,
+      value: release,
+    };
+  } else {
+    tagObject = {
+      _health_id: `${tag}:${tag}-slug`,
+      value: tag,
+    };
+  }
+
+  return {
+    count: 123,
+    [tag]: tagObject,
+  };
+};
 
 export function Top(tag = 'release', params) {
   const countObject = COUNT_OBJ(tag);

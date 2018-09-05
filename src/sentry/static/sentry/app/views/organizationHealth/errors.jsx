@@ -23,6 +23,14 @@ import withHealth from './util/withHealth';
 
 const ReleasesRequest = withApi(
   class ReleasesRequestComponent extends React.Component {
+    static propTypes = {
+      limit: PropTypes.number,
+    };
+
+    static defaultProps = {
+      limit: 10,
+    };
+
     constructor(props) {
       super(props);
       this.state = {
@@ -31,11 +39,11 @@ const ReleasesRequest = withApi(
     }
 
     async componentDidMount() {
-      // fetch releases
       let {api, organization, limit} = this.props;
       if (!organization) return;
 
       try {
+        // fetch last `limit` releases
         const releases = await api.requestPromise(
           `/organizations/${organization.slug}/releases/`,
           {
@@ -55,15 +63,13 @@ const ReleasesRequest = withApi(
     }
 
     render() {
-      let {children, ...props} = this.props;
+      let {children, limit, ...props} = this.props;
       let {data} = this.state;
       let loading = data === null;
 
       if (!data) {
-        return null;
         return children({
           loading,
-          data,
         });
       }
 
@@ -73,7 +79,7 @@ const ReleasesRequest = withApi(
           includeTimeseries
           interval="1d"
           showLoading
-          limit={10}
+          limit={limit}
           getCategory={({shortVersion}) => shortVersion}
           specifiers={data.map(({version}) => `release:${version}`)}
           {...props}
@@ -162,36 +168,6 @@ class OrganizationHealthErrors extends React.Component {
         </Flex>
 
         <Flex>
-          <ReleasesRequest organization={organization}>
-            {({timeseriesData}) => {
-              console.log('percentagebarchart', timeseriesData);
-              return (
-                <HealthPanelChart
-                  height={200}
-                  title={t('Releases')}
-                  series={timeseriesData}
-                >
-                  {props => <PercentageBarChart {...props} />}
-                </HealthPanelChart>
-              );
-            }}
-          </ReleasesRequest>
-
-          <ReleasesRequest organization={organization}>
-            {({timeseriesData}) => {
-              return (
-                <HealthPanelChart
-                  height={200}
-                  title={t('Releases')}
-                  series={timeseriesData}
-                >
-                  {props => <AreaChart {...props} />}
-                </HealthPanelChart>
-              );
-            }}
-          </ReleasesRequest>
-        </Flex>
-        <Flex>
           <HealthRequest
             tag="error.type"
             showLoading
@@ -209,6 +185,61 @@ class OrganizationHealthErrors extends React.Component {
                   showColumnTotal
                   shadeRowPercentage
                 />
+              );
+            }}
+          </HealthRequest>
+        </Flex>
+
+        <Flex>
+          <ReleasesRequest organization={organization}>
+            {({loading, timeseriesData}) => {
+              if (loading) return null;
+              return (
+                <HealthPanelChart
+                  height={200}
+                  title={t('Releases')}
+                  series={timeseriesData}
+                >
+                  {props => <AreaChart {...props} />}
+                </HealthPanelChart>
+              );
+            }}
+          </ReleasesRequest>
+        </Flex>
+
+        <Flex>
+          <ReleasesRequest organization={organization}>
+            {({timeseriesData, loading}) => {
+              if (loading) return null;
+              return (
+                <HealthPanelChart
+                  height={200}
+                  title={t('Releases')}
+                  series={timeseriesData}
+                >
+                  {props => <PercentageBarChart {...props} />}
+                </HealthPanelChart>
+              );
+            }}
+          </ReleasesRequest>
+
+          <HealthRequest
+            tag="release"
+            includeTimeseries
+            interval="1d"
+            showLoading
+            limit={10}
+            getCategory={({shortVersion}) => shortVersion}
+          >
+            {({timeseriesData}) => {
+              return (
+                <HealthPanelChart
+                  height={200}
+                  title={t('Releases')}
+                  series={timeseriesData}
+                >
+                  {props => <PercentageBarChart {...props} />}
+                </HealthPanelChart>
               );
             }}
           </HealthRequest>
