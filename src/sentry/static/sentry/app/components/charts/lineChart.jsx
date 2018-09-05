@@ -1,4 +1,6 @@
+import moment from 'moment';
 import React from 'react';
+
 import BaseChart from './baseChart';
 import XAxis from './components/xAxis';
 import YAxis from './components/yAxis';
