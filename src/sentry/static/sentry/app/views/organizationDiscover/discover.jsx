@@ -214,29 +214,13 @@ export default class OrganizationDiscover extends React.Component {
 
     return (
       <Discover>
-        <Header px={space(4)} py={2} className="sub-header">
-          <strong>{t('Discover')}</strong>
-          <Flex>
-            <MultipleProjectSelector
-              value={currentQuery.projects}
-              projects={this.props.organization.projects}
-              onChange={val => this.updateField('projects', val)}
-              onUpdate={this.runQuery}
-            />
-            <HeaderSeparator />
-            <TimeRangeSelector
-              start={currentQuery.start}
-              end={currentQuery.end}
-              onChange={(name, val) => this.updateField(name, val)}
-              onUpdate={this.runQuery}
-            />
-          </Flex>
-        </Header>
         <DiscoverBody>
           <Sidebar w={320}>
+            <DiscoverHeader>{t('Discover')}</DiscoverHeader>
+
             <SidebarHeader align="center" px={space(4)} py={space(1.5)}>
               <Box flex="1">
-                <DiscoverHeading>{t('Query')}</DiscoverHeading>
+                <DiscoverSubHeader>{t('Query')}</DiscoverSubHeader>
               </Box>
               <Box>
                 <Button
@@ -308,17 +292,41 @@ export default class OrganizationDiscover extends React.Component {
               />
             </Fieldset>
           </Sidebar>
-          <Flex flex="1" direction="column" px={3} py={3}>
-            {data && (
-              <Result
-                data={data}
-                query={query}
-                chartData={chartData}
-                chartQuery={chartQuery}
+          <Flex direction="column" flex="1">
+            <ProjectAndTimeSelector>
+              <MultipleProjectSelector
+                value={currentQuery.projects}
+                projects={this.props.organization.projects}
+                onChange={val => this.updateField('projects', val)}
+                onUpdate={this.runQuery}
+                align="left"
+                labelMargin="-5px"
               />
-            )}
-            {!data && <Intro updateQuery={this.updateFields} />}
-            <EarlyAdopterMessage />
+              <HeaderSeparator />
+              <TimeRangeSelector
+                start={currentQuery.start}
+                end={currentQuery.end}
+                onChange={(name, val) => this.updateField(name, val)}
+                onUpdate={this.runQuery}
+                relative="14d"
+                showRelative
+                showAbsolute={false}
+                align="left"
+                labelMargin="-5px"
+              />
+            </ProjectAndTimeSelector>
+            <Flex flex="1" direction="column" px={3} py={3}>
+              {data && (
+                <Result
+                  data={data}
+                  query={query}
+                  chartData={chartData}
+                  chartQuery={chartQuery}
+                />
+              )}
+              {!data && <Intro updateQuery={this.updateFields} />}
+              <EarlyAdopterMessage />
+            </Flex>
           </Flex>
         </DiscoverBody>
       </Discover>
@@ -326,11 +334,35 @@ export default class OrganizationDiscover extends React.Component {
   }
 }
 
-const DiscoverHeading = styled.h2`
+const DiscoverHeader = styled.h2`
+  display: flex;
+  font-size: 19px;
+  font-weight: normal;
+  color: ${p => p.theme.gray5};
+  margin: 0;
+  align-items: center;
+  padding-left: 30px;
+  border-bottom: 1px solid ${p => p.theme.borderLight};
+  height: ${p => p.theme.sidebar.discoverSidebarHeaderHeight};
+`;
+
+const DiscoverSubHeader = styled.h2`
   font-size: 18px;
   font-weight: normal;
   color: ${p => p.theme.gray4};
   margin: 0;
+`;
+
+const ProjectAndTimeSelector = styled(Flex)`
+  padding: 0 30px;
+  border-bottom: 1px solid ${p => p.theme.borderLight};
+  justify: space-between;
+  height: ${p => p.theme.sidebar.discoverSidebarHeaderHeight};
+`;
+
+const Sidebar = styled(Box)`
+  border-right: 1px solid ${p => p.theme.borderDark};
+  min-width: 320px;
 `;
 
 const SidebarHeader = styled(Flex)`
@@ -339,22 +371,11 @@ const SidebarHeader = styled(Flex)`
 
 const DiscoverBody = styled(Flex)`
   min-height: calc(100vh - 152px);
-`;
-
-const Sidebar = styled(Box)`
-  border-right: 1px solid ${p => p.theme.borderDark};
-  min-width: 320px;
+  margin-bottom: -20px;
 `;
 
 const Discover = styled('div')`
   .control-group {
     margin-bottom: 0; /* Do not want the global control-group margins  */
   }
-`;
-
-const Header = styled(Flex)`
-  font-size: 18px;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0 !important;
 `;

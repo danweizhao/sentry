@@ -131,6 +131,7 @@ const theme = {
 
   sidebar: {
     background: '#2f2936',
+    discoverSidebarHeaderHeight: '60px',
     color: '#9586a5',
     divider: '#493e54',
     badgeSize: '22px',

@@ -44,6 +44,7 @@ class DropdownLink extends React.Component {
       disabled,
       title,
       caret,
+      caretPadding,
       children,
       menuClasses,
       className,
@@ -86,7 +87,12 @@ class DropdownLink extends React.Component {
               >
                 <div className="dropdown-actor-title">
                   <span>{title}</span>
-                  {caret && <i className="icon-arrow-down" />}
+                  {caret && (
+                    <i
+                      className="icon-arrow-down"
+                      style={caretPadding && {paddingLeft: '30px'}}
+                    />
+                  )}
                 </div>
               </a>
 

@@ -17,6 +17,8 @@ export default class MultipleProjectSelector extends React.Component {
     projects: PropTypes.array,
     onChange: PropTypes.func,
     onUpdate: PropTypes.func,
+    align: PropTypes.oneOf(['right', 'left']),
+    labelMargin: PropTypes.string,
   };
 
   static defaultProps = {
@@ -42,7 +44,15 @@ export default class MultipleProjectSelector extends React.Component {
   };
 
   render() {
-    const {className, anchorRight, value, projects, onChange} = this.props;
+    const {
+      className,
+      anchorRight,
+      value,
+      projects,
+      onChange,
+      align,
+      labelMargin,
+    } = this.props;
     const selectedProjectIds = new Set(value);
 
     const projectList = projects
@@ -61,7 +71,12 @@ export default class MultipleProjectSelector extends React.Component {
     });
 
     return (
-      <HeaderItem className={className} label={t('Projects')}>
+      <HeaderItem
+        className={className}
+        label={t('Projects')}
+        align={align}
+        margin={labelMargin}
+      >
         <DropdownLink
           title={summary}
           anchorRight={anchorRight}
@@ -69,6 +84,7 @@ export default class MultipleProjectSelector extends React.Component {
           keepMenuOpen={true}
           onOpen={() => this.setState({isOpen: true})}
           onClose={() => this.setState({isOpen: false})}
+          caretPadding
         >
           <Box p={2}>
             <Box mb={1}>
