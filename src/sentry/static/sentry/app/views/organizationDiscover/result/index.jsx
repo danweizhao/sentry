@@ -5,12 +5,13 @@ import styled from 'react-emotion';
 import {Box, Flex} from 'grid-emotion';
 
 import {t} from 'app/locale';
+import Link from 'app/components/link';
 import BarChart from 'app/components/charts/barChart';
 import LineChart from 'app/components/charts/lineChart';
 import Tooltip from 'app/components/charts/components/tooltip';
 
 import Table from './table';
-import {getChartData, getChartDataByDay, formatTooltip} from './utils';
+import {getChartData, getChartDataByDay, formatTooltip, downloadAsCsv} from './utils';
 import {NUMBER_OF_SERIES_BY_DAY} from '../data';
 
 export default class Result extends React.Component {
@@ -46,18 +47,22 @@ export default class Result extends React.Component {
   }
 
   renderToggle() {
+    const {data, query, chartData} = this.props;
+
     const options = [{id: 'table', name: t('Table')}];
 
-    if (this.props.query.aggregations.length) {
+    if (query.aggregations.length) {
       options.push({id: 'line', name: t('Line')}, {id: 'bar', name: t('Bar')});
     }
 
-    if (this.props.chartData) {
+    if (chartData) {
       options.push(
         {id: 'line-by-day', name: t('Line by Day')},
         {id: 'bar-by-day', name: t('Bar by Day')}
       );
     }
+
+    const linkClasses = 'btn btn-default btn-sm';
 
     return (
       <Flex justify="flex-end" align="center" my={2}>
@@ -65,18 +70,23 @@ export default class Result extends React.Component {
           {options.map(opt => {
             const active = opt.id === this.state.view;
             return (
-              <a
+              <Link
                 key={opt.id}
-                className={classNames('btn btn-default btn-sm', {active})}
+                className={classNames(linkClasses, {active})}
                 onClick={() => {
                   this.setState({view: opt.id});
                 }}
               >
                 {opt.name}
-              </a>
+              </Link>
             );
           })}
         </div>
+        <Box ml={1}>
+          <Link className={linkClasses} onClick={() => downloadAsCsv(data)}>
+            {t('Export CSV')}
+          </Link>
+        </Box>
       </Flex>
     );
   }
