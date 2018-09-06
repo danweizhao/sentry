@@ -26,7 +26,9 @@ exports[`OrganizationRepositories renders with a repository 1`] = `
       ]
     }
     requireAll={false}
-  />
+  >
+    <Component />
+  </FeatureContainer>
   <Panel>
     <PanelHeader
       disablePadding={true}
@@ -132,7 +134,9 @@ exports[`OrganizationRepositories renders with github provider 1`] = `
       ]
     }
     requireAll={false}
-  />
+  >
+    <Component />
+  </FeatureContainer>
   <div
     className="m-b-2"
   >
@@ -217,7 +221,9 @@ exports[`OrganizationRepositories renders without providers 1`] = `
       ]
     }
     requireAll={false}
-  />
+  >
+    <Component />
+  </FeatureContainer>
   <div
     className="m-b-2"
   >
