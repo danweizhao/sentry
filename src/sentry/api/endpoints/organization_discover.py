@@ -92,6 +92,19 @@ class DiscoverSerializer(serializers.Serializer):
 
         return attrs
 
+    def validate_conditions(self, attrs, source):
+        if attrs.get(source):
+            conditions = [self.get_condition(condition) for condition in attrs[source]]
+            attrs[source] = conditions
+        return attrs
+
+    def get_condition(self, condition):
+        # Cast boolean values to 1 / 0
+        if isinstance(condition[2], bool):
+            condition[2] = int(condition[2])
+
+        return condition
+
     def has_projects_access(self, member, organization, requested_projects):
         has_global_access = roles.get(member.role).is_global
         if has_global_access:
