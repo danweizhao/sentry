@@ -299,8 +299,6 @@ export default class OrganizationDiscover extends React.Component {
                 projects={this.props.organization.projects}
                 onChange={val => this.updateField('projects', val)}
                 onUpdate={this.runQuery}
-                align="left"
-                labelMargin="-5px"
               />
               <HeaderSeparator />
               <TimeRangeSelector
@@ -311,8 +309,6 @@ export default class OrganizationDiscover extends React.Component {
                 relative="14d"
                 showRelative
                 showAbsolute={false}
-                align="left"
-                labelMargin="-5px"
               />
             </ProjectAndTimeSelector>
             <Flex flex="1" direction="column" px={3} py={3}>

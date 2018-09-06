@@ -17,8 +17,6 @@ export default class MultipleProjectSelector extends React.Component {
     projects: PropTypes.array,
     onChange: PropTypes.func,
     onUpdate: PropTypes.func,
-    align: PropTypes.oneOf(['right', 'left']),
-    labelMargin: PropTypes.string,
   };
 
   static defaultProps = {
@@ -50,7 +48,6 @@ export default class MultipleProjectSelector extends React.Component {
       value,
       projects,
       onChange,
-      align,
     } = this.props;
     const selectedProjectIds = new Set(value);
 
@@ -73,7 +70,6 @@ export default class MultipleProjectSelector extends React.Component {
       <HeaderItem
         className={className}
         label={t('Projects')}
-        align={align}
       >
         <DropdownLink
           title={summary}

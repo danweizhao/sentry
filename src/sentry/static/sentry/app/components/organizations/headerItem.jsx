@@ -8,7 +8,6 @@ import space from 'app/styles/space';
 class HeaderItem extends React.Component {
   static propTypes = {
     label: PropTypes.node,
-    align: PropTypes.oneOf(['right', 'left']),
 
     /**
      * className for <Label> component
@@ -16,15 +15,11 @@ class HeaderItem extends React.Component {
     labelClassName: PropTypes.string,
   };
 
-  static defaultProps = {
-    align: 'right',
-  };
-
   render() {
-    const {className, labelClassName, label, align, children} = this.props;
+    const {className, labelClassName, label, children} = this.props;
 
     return (
-      <StyledHeaderItem align={align} className={className}>
+      <StyledHeaderItem className={className}>
         <Label className={labelClassName}>
           {label}
         </Label>
@@ -39,7 +34,7 @@ export default HeaderItem;
 const StyledHeaderItem = styled(props => (
   <Flex direction="column" justify="center" {...props} />
 ))`
-  text-align: ${p => p.align};
+  text-align: left;
 
   .dropdown-actor-title {
     font-size: 15px;

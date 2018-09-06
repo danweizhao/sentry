@@ -45,7 +45,6 @@ class DropdownLink extends React.Component {
       disabled,
       title,
       caret,
-      caretPadding,
       children,
       menuClasses,
       className,
