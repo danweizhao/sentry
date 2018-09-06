@@ -356,7 +356,6 @@ const DiscoverSubHeader = styled.h2`
 const ProjectAndTimeSelector = styled(Flex)`
   padding: 0 30px;
   border-bottom: 1px solid ${p => p.theme.borderLight};
-  justify: space-between;
   height: ${p => p.theme.sidebar.discoverSidebarHeaderHeight};
 `;
 

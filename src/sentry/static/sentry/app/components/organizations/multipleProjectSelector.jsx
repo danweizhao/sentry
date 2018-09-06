@@ -51,7 +51,6 @@ export default class MultipleProjectSelector extends React.Component {
       projects,
       onChange,
       align,
-      labelMargin,
     } = this.props;
     const selectedProjectIds = new Set(value);
 
@@ -75,7 +74,6 @@ export default class MultipleProjectSelector extends React.Component {
         className={className}
         label={t('Projects')}
         align={align}
-        margin={labelMargin}
       >
         <DropdownLink
           title={summary}
@@ -84,7 +82,6 @@ export default class MultipleProjectSelector extends React.Component {
           keepMenuOpen={true}
           onOpen={() => this.setState({isOpen: true})}
           onClose={() => this.setState({isOpen: false})}
-          caretPadding
         >
           <Box p={2}>
             <Box mb={1}>

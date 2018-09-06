@@ -14,20 +14,18 @@ class HeaderItem extends React.Component {
      * className for <Label> component
      */
     labelClassName: PropTypes.string,
-    margin: PropTypes.string,
   };
 
   static defaultProps = {
     align: 'right',
-    margin: space(1),
   };
 
   render() {
-    const {className, labelClassName, label, align, children, margin} = this.props;
+    const {className, labelClassName, label, align, children} = this.props;
 
     return (
       <StyledHeaderItem align={align} className={className}>
-        <Label className={labelClassName} margin={margin}>
+        <Label className={labelClassName}>
           {label}
         </Label>
         {children}
@@ -54,5 +52,5 @@ const Label = styled('label')`
   font-weight: 400;
   font-size: 13px;
   color: ${p => p.theme.gray6};
-  margin-bottom: ${p => p.margin};
+  margin-bottom: -5px;
 `;

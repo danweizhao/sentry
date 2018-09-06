@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import styled from 'react-emotion';
 import classNames from 'classnames';
 
 import DropdownMenu from 'app/components/dropdownMenu';
@@ -86,11 +87,10 @@ class DropdownLink extends React.Component {
                 })}
               >
                 <div className="dropdown-actor-title">
-                  <span>{title}</span>
+                  <Title>{title}</Title>
                   {caret && (
                     <i
                       className="icon-arrow-down"
-                      style={caretPadding && {paddingLeft: '30px'}}
                     />
                   )}
                 </div>
@@ -112,5 +112,10 @@ class DropdownLink extends React.Component {
     );
   }
 }
+
+const Title = styled.span`
+  padding-right: 40px;
+`;
+
 
 export default DropdownLink;

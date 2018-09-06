@@ -99,7 +99,6 @@ class TimeRangeSelector extends React.Component {
       showRelative,
       onChange,
       align,
-      labelMargin,
     } = this.props;
     // Currently we will only show either absolute or relative selector, with "absolute" taking precedence
     // Maybe an ideal selector would allow the user to choose between the two if both types of dates were allowed
@@ -115,7 +114,6 @@ class TimeRangeSelector extends React.Component {
         className={className}
         label={t('Time frame')}
         align={align}
-        margin={labelMargin}
       >
         <DropdownLink
           title={<DynamicWrapper value={summary} fixed="start to end" />}
@@ -124,7 +122,6 @@ class TimeRangeSelector extends React.Component {
           isOpen={this.state.isOpen}
           onOpen={() => this.setState({isOpen: true})}
           onClose={() => this.setState({isOpen: false})}
-          caretPadding
         >
           <Flex direction="column" p={2}>
             {shouldShowAbsolute && (
