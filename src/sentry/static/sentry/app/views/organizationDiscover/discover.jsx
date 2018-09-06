@@ -307,8 +307,6 @@ export default class OrganizationDiscover extends React.Component {
                 onChange={(name, val) => this.updateField(name, val)}
                 onUpdate={this.runQuery}
                 relative="14d"
-                showRelative
-                showAbsolute={false}
               />
             </ProjectAndTimeSelector>
             <Flex flex="1" direction="column" px={3} py={3}>
