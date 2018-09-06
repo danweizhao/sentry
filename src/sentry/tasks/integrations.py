@@ -156,12 +156,9 @@ def kick_off_status_syncs(project_id, group_id, **kwargs):
             }
         )
 
-# Particulariliry For VSTS
-# TODO(lb): I want to say do this every 6 hours
-
 
 @instrumented_task(
-    name='sentry.tasks.integrations.vsts_subscription_check_kickoff',
+    name='sentry.tasks.integrations.kickoff_vsts_subscription_check',
     queue='integrations',
     default_retry_delay=60 * 5,  # TODO(lb): not sure what this should be
     max_retries=5,
@@ -189,7 +186,12 @@ def kickoff_vsts_subscription_check():
             integration_id=integration.id,
         ).values_list('organization_id', flatten=True)
         for organization_id in organization_ids:
-            vsts_subscription_check(integration, organization_id)
+            vsts_subscription_check(integration, organization_id).apply_async(
+                kwargs={
+                    'integration': integration,
+                    'organization_id': organization_id,
+                }
+            )
 
 
 @instrumented_task(
@@ -199,7 +201,7 @@ def kickoff_vsts_subscription_check():
     max_retries=5,
 )
 @retry(exclude=(ApiError, ApiUnauthorized))
-def vsts_subscription_check(integration, organization_id):
+def vsts_subscription_check(integration, organization_id, **kwargs):
     installation = integration.get_installation(organization_id=organization_id)
     client = installation.get_client()
     subscription_id = integration.metadata['subscription']['id']
