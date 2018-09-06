@@ -223,7 +223,11 @@ exports[`ResolveActions with confirmation step renders 1`] = `
               <div
                 className="dropdown-actor-title"
               >
-                <span />
+                <Title>
+                  <span
+                    className="css-dudlpy-Title e1ev5ptt0"
+                  />
+                </Title>
                 <i
                   className="icon-arrow-down"
                 />
@@ -612,7 +616,11 @@ exports[`ResolveActions without confirmation renders 1`] = `
               <div
                 className="dropdown-actor-title"
               >
-                <span />
+                <Title>
+                  <span
+                    className="css-dudlpy-Title e1ev5ptt0"
+                  />
+                </Title>
                 <i
                   className="icon-arrow-down"
                 />

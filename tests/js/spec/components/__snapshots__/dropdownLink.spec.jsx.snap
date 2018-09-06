@@ -30,9 +30,13 @@ exports[`DropdownLink renders and anchors to left by default 1`] = `
         <div
           className="dropdown-actor-title"
         >
-          <span>
-            test
-          </span>
+          <Title>
+            <span
+              className="css-dudlpy-Title e1ev5ptt0"
+            >
+              test
+            </span>
+          </Title>
           <i
             className="icon-arrow-down"
           />
@@ -86,9 +90,13 @@ exports[`DropdownLink renders and anchors to right 1`] = `
         <div
           className="dropdown-actor-title"
         >
-          <span>
-            test
-          </span>
+          <Title>
+            <span
+              className="css-dudlpy-Title e1ev5ptt0"
+            >
+              test
+            </span>
+          </Title>
           <i
             className="icon-arrow-down"
           />

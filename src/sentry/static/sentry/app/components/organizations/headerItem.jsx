@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import {Flex} from 'grid-emotion';
 
-import space from 'app/styles/space';
-
 class HeaderItem extends React.Component {
   static propTypes = {
     label: PropTypes.node,

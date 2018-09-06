@@ -373,7 +373,11 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
               <div
                 className="dropdown-actor-title"
               >
-                <span />
+                <Title>
+                  <span
+                    className="css-dudlpy-Title e1ev5ptt0"
+                  />
+                </Title>
                 <i
                   className="icon-arrow-down"
                 />
@@ -425,9 +429,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                         <div
                           className="dropdown-actor-title"
                         >
-                          <span>
-                            For…
-                          </span>
+                          <Title>
+                            <span
+                              className="css-dudlpy-Title e1ev5ptt0"
+                            >
+                              For…
+                            </span>
+                          </Title>
                         </div>
                       </a>
                       <ul
@@ -970,9 +978,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                         <div
                           className="dropdown-actor-title"
                         >
-                          <span>
-                            Until this occurs again…
-                          </span>
+                          <Title>
+                            <span
+                              className="css-dudlpy-Title e1ev5ptt0"
+                            >
+                              Until this occurs again…
+                            </span>
+                          </Title>
                         </div>
                       </a>
                       <ul
@@ -1010,9 +1022,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      10 times
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        10 times
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -1410,9 +1426,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      100 times
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        100 times
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -1810,9 +1830,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      1,000 times
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        1,000 times
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -2210,9 +2234,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      10,000 times
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        10,000 times
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -2610,9 +2638,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      100,000 times
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        100,000 times
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -3040,9 +3072,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                         <div
                           className="dropdown-actor-title"
                         >
-                          <span>
-                            Until this affects an additional…
-                          </span>
+                          <Title>
+                            <span
+                              className="css-dudlpy-Title e1ev5ptt0"
+                            >
+                              Until this affects an additional…
+                            </span>
+                          </Title>
                         </div>
                       </a>
                       <ul
@@ -3080,9 +3116,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      10 users
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        10 users
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -3480,9 +3520,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      100 users
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        100 users
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -3880,9 +3924,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      1,000 users
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        1,000 users
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -4280,9 +4328,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      10,000 users
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        10,000 users
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -4680,9 +4732,13 @@ exports[`IgnoreActions with confirmation step renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      100,000 users
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        100,000 users
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -5399,7 +5455,11 @@ exports[`IgnoreActions without confirmation renders 1`] = `
               <div
                 className="dropdown-actor-title"
               >
-                <span />
+                <Title>
+                  <span
+                    className="css-dudlpy-Title e1ev5ptt0"
+                  />
+                </Title>
                 <i
                   className="icon-arrow-down"
                 />
@@ -5451,9 +5511,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                         <div
                           className="dropdown-actor-title"
                         >
-                          <span>
-                            For…
-                          </span>
+                          <Title>
+                            <span
+                              className="css-dudlpy-Title e1ev5ptt0"
+                            >
+                              For…
+                            </span>
+                          </Title>
                         </div>
                       </a>
                       <ul
@@ -5686,9 +5750,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                         <div
                           className="dropdown-actor-title"
                         >
-                          <span>
-                            Until this occurs again…
-                          </span>
+                          <Title>
+                            <span
+                              className="css-dudlpy-Title e1ev5ptt0"
+                            >
+                              Until this occurs again…
+                            </span>
+                          </Title>
                         </div>
                       </a>
                       <ul
@@ -5726,9 +5794,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      10 times
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        10 times
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -5878,9 +5950,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      100 times
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        100 times
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -6030,9 +6106,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      1,000 times
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        1,000 times
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -6182,9 +6262,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      10,000 times
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        10,000 times
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -6334,9 +6418,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      100,000 times
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        100,000 times
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -6516,9 +6604,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                         <div
                           className="dropdown-actor-title"
                         >
-                          <span>
-                            Until this affects an additional…
-                          </span>
+                          <Title>
+                            <span
+                              className="css-dudlpy-Title e1ev5ptt0"
+                            >
+                              Until this affects an additional…
+                            </span>
+                          </Title>
                         </div>
                       </a>
                       <ul
@@ -6556,9 +6648,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      10 users
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        10 users
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -6708,9 +6804,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      100 users
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        100 users
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -6860,9 +6960,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      1,000 users
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        1,000 users
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -7012,9 +7116,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      10,000 users
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        10,000 users
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul
@@ -7164,9 +7272,13 @@ exports[`IgnoreActions without confirmation renders 1`] = `
                                   <div
                                     className="dropdown-actor-title"
                                   >
-                                    <span>
-                                      100,000 users
-                                    </span>
+                                    <Title>
+                                      <span
+                                        className="css-dudlpy-Title e1ev5ptt0"
+                                      >
+                                        100,000 users
+                                      </span>
+                                    </Title>
                                   </div>
                                 </a>
                                 <ul

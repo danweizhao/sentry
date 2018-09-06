@@ -103,9 +103,13 @@ exports[`GroupReleaseStats renders 1`] = `
                 <div
                   className="dropdown-actor-title"
                 >
-                  <span>
-                    All Environments
-                  </span>
+                  <Title>
+                    <span
+                      className="css-dudlpy-Title e1ev5ptt0"
+                    >
+                      All Environments
+                    </span>
+                  </Title>
                   <i
                     className="icon-arrow-down"
                   />
