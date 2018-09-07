@@ -261,7 +261,7 @@ function quoteUnsafeStrings(value) {
   const unsafeCharacterRegex = /^[\=\+\-\@]/;
 
   if (typeof value === 'string' && `${value}`.match(unsafeCharacterRegex)) {
-    return `"${value}"`;
+    return `\t"${value}"`;
   }
 
   return value;
